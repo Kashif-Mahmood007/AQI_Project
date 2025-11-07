@@ -39,5 +39,5 @@ python app.py
 
 For Github Actions,
 Create 2 secrets in repo, 
-- Name: WAQI_TOKEN,     Value: My Hopswork API Key
+- Name: WAQI_TOKEN,     Value: My AQI API Key (WAQI)
 - Name: HOPSWORKS_API_KEY,   Value: My Hopswork API Key 
