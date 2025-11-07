@@ -33,6 +33,10 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        # pull latest main first to avoid conflict
+        git pull origin main --rebase || echo "No remote changes to pull"
+
         git add models/best_model.pkl
         git commit -m "Update trained model [skip ci]" || echo "No changes to commit"
         git push
