@@ -1,0 +1,40 @@
+name: Fetch AQI Data Hourly
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # runs every hour
+  workflow_dispatch:       # allow manual trigger
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # ✅ allow workflow to push changes back
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}  # ✅ authenticate with write access
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install requests pandas schedule
+
+    - name: Run AQI fetch script
+      run: python src/fetch_aqi_data.py
+      env:
+        WAQI_TOKEN: ${{ secrets.WAQI_TOKEN }}  # ✅ securely pass token to script
+
+    - name: Commit and push updated CSV
+      run: |
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+        git add csv/hourly_aqi_data.csv || echo "No CSV found"
+        git commit -m "Update hourly AQI data" || echo "No changes to commit"
+        git push origin main
