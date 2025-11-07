@@ -10,7 +10,8 @@ if not WAQI_TOKEN:
     raise RuntimeError("❌ WAQI_TOKEN not found in environment variables")
 
 URL = f"https://api.waqi.info/feed/A545332/?token={WAQI_TOKEN}"
-FILE_NAME = "csv/hourly_aqi_data.csv"
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FILE_NAME = os.path.join(BASE_DIR, "..", "csv", "hourly_aqi_data.csv")
 
 
 def safe_get(iaqi_dict, key):
