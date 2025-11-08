@@ -21,7 +21,7 @@ st.set_page_config(page_title="AQI Forecast Dashboard", layout="wide")
 
 st.title("🌤️ Air Quality Forecast Dashboard")
 st.markdown("""
-This app connects to **Hopsworks** to fetch the latest features and uses **locally stored trained models + preprocessing pipeline**
+This app connects to **Hopsworks** to fetch the latest features and uses **locally stored trained models**
 to predict the next 24-hour AQI values.
 """)
 
@@ -75,7 +75,7 @@ if "fs" in st.session_state:
     # ------------------------------------------
     # 📦 Load Models and Preprocessing Pipeline
     # ------------------------------------------
-    st.subheader("📦 Loading Local Models and Pipeline")
+    st.subheader("📦 Loading Local Models")
 
     models_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models"))
 
