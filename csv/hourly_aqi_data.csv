@@ -200,3 +200,4 @@ timestamp,city,dominentpol,temperature,humidity,pm1,pm10,pm25,aqi
 2025-11-08 13:13:42,"NED University, Karachi",pm25,29.75,39.98,22,20,67,67
 2025-11-08 14:09:01,"NED University, Karachi",pm25,29.9,39.02,24,20,66,66
 2025-11-08 15:09:42,"NED University, Karachi",pm25,29.9,39.66,24,21,69,69
+2025-11-08 16:07:48,"NED University, Karachi",pm25,29.6,39.93,26,26,74,74
