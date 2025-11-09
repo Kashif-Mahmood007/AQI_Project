@@ -279,6 +279,7 @@ best_model_to_save
 ## Save the best model
 import pickle 
 pickle.dump(best_model_to_save, open("models/best_model.pkl", 'wb')) 
+print("best_model (Base) Saved Successfully locally")
 
 
 ## Apply MultiOutputRegressor for Multi-step Forecasting
@@ -304,7 +305,7 @@ mor.feature_names_in_ = X_feat.columns.tolist()
 
 # Save the model (MultiOutputRegressor)
 pickle.dump(mor, open("models/best_forecast_model.pkl", "wb"))
-
+print("best_forecast_model Saved Successfully locally")
 
 ## Save the Model to Hopswork 
 
