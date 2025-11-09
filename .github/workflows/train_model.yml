@@ -37,6 +37,6 @@ jobs:
         # pull latest main first to avoid conflict
         git pull origin main --rebase || echo "No remote changes to pull"
 
-        git add models/best_model.pkl
+        git add models/*.pkl
         git commit -m "Update trained model [skip ci]" || echo "No changes to commit"
         git push
