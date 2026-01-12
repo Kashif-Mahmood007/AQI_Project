@@ -133,7 +133,7 @@ features_scaled_df['timestamp'] = df['timestamp'].values
 # fg.insert(features_scaled_df, wait=True)
 
 
-# ### Fetch the Scaled Features from Hopswork to Train Models
+### Fetch the Scaled Features from Hopswork to Train Models
 
 # project = hopsworks.login(api_key_value = api_key)
 # fs = project.get_feature_store()
@@ -142,6 +142,8 @@ features_scaled_df['timestamp'] = df['timestamp'].values
 #     version=1
 # )
 # df_scaled = fg.read()
+
+df_scaled = features_scaled_df     # As we comment the feature storage and fetching part
 
 
 ### Train and compare the ML Models 
