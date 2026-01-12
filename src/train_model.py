@@ -342,4 +342,6 @@ print("best_forecast_model Saved Successfully locally")
 #     name="aqi_forecast_model",
 #     description="Multi-output 24-hour AQI forecasting model"
 # )
+
+# model_forecast.save("models/best_forecast_model.pkl")
 # model_forecast.save("models/best_forecast_model.pkl")
