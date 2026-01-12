@@ -116,31 +116,34 @@ features_scaled_df['timestamp'] = df['timestamp'].values
 
 ### Storing the Features to Hopswork
 
-import hopsworks
-api_key = os.environ.get("HOPSWORKS_API_KEY")
-project = hopsworks.login(api_key_value = api_key)
-fs = project.get_feature_store()
+# import hopsworks
+# from hopsworks_common.client.base import RestAPIError  
+# api_key = os.environ.get("HOPSWORKS_API_KEY")
+# project = hopsworks.login(api_key_value = api_key)
+# fs = project.get_feature_store()
 
-# create or get a feature group object
-fg = fs.get_or_create_feature_group(
-    name="aqi_scaled_features_10pearls",
-    version=1,
-    description="Scaled + engineered AQI features used by models",
-    primary_key=["timestamp"],   
-    event_time="timestamp"       
-)
-fg.insert(features_scaled_df, wait=True)
+# # create or get a feature group object
+# fg = fs.get_or_create_feature_group(
+#     name="aqi_scaled_features_10pearls",
+#     version=1,
+#     description="Scaled + engineered AQI features used by models",
+#     primary_key=["timestamp"],   
+#     event_time="timestamp"       
+# )
+# fg.insert(features_scaled_df, wait=True)
 
 
 ### Fetch the Scaled Features from Hopswork to Train Models
 
-project = hopsworks.login(api_key_value = api_key)
-fs = project.get_feature_store()
-fg = fs.get_feature_group(
-    name="aqi_scaled_features_10pearls",
-    version=1
-)
-df_scaled = fg.read()
+# project = hopsworks.login(api_key_value = api_key)
+# fs = project.get_feature_store()
+# fg = fs.get_feature_group(
+#     name="aqi_scaled_features_10pearls",
+#     version=1
+# )
+# df_scaled = fg.read()
+
+df_scaled = features_scaled_df     # As we comment the feature storage and fetching part
 
 
 ### Train and compare the ML Models 
@@ -319,24 +322,24 @@ print("best_forecast_model Saved Successfully locally")
 
 ## Save the Model to Hopswork 
 
-project = hopsworks.login(api_key_value = api_key)
-mr = project.get_model_registry()
+# project = hopsworks.login(api_key_value = api_key)
+# mr = project.get_model_registry()
 
-best_model = pickle.load(open("models/best_model.pkl", "rb"))
-best_forecast_model = pickle.load(open("models/best_forecast_model.pkl", "rb"))
-
-
-# Register base model (single-step)
-model_base = mr.python.create_model(
-    name="aqi_base_model",
-    description="Best single-step AQI prediction model (trained on scaled features)"
-)
-model_base.save("models/best_model.pkl")
+# best_model = pickle.load(open("models/best_model.pkl", "rb"))
+# best_forecast_model = pickle.load(open("models/best_forecast_model.pkl", "rb"))
 
 
-# Register forecast model
-model_forecast = mr.python.create_model(
-    name="aqi_forecast_model",
-    description="Multi-output 24-hour AQI forecasting model"
-)
-model_forecast.save("models/best_forecast_model.pkl")
+# # Register base model (single-step)
+# model_base = mr.python.create_model(
+#     name="aqi_base_model",
+#     description="Best single-step AQI prediction model (trained on scaled features)"
+# )
+# model_base.save("models/best_model.pkl")
+
+
+# # Register forecast model
+# model_forecast = mr.python.create_model(
+#     name="aqi_forecast_model",
+#     description="Multi-output 24-hour AQI forecasting model"
+# )
+# model_forecast.save("models/best_forecast_model.pkl")
