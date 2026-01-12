@@ -322,11 +322,11 @@ print("best_forecast_model Saved Successfully locally")
 
 ## Save the Model to Hopswork 
 
-project = hopsworks.login(api_key_value = api_key)
-mr = project.get_model_registry()
+# project = hopsworks.login(api_key_value = api_key)
+# mr = project.get_model_registry()
 
-best_model = pickle.load(open("models/best_model.pkl", "rb"))
-best_forecast_model = pickle.load(open("models/best_forecast_model.pkl", "rb"))
+# best_model = pickle.load(open("models/best_model.pkl", "rb"))
+# best_forecast_model = pickle.load(open("models/best_forecast_model.pkl", "rb"))
 
 
 # # Register base model (single-step)
