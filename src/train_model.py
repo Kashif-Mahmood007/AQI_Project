@@ -9,16 +9,26 @@ import os
 # Load dataset from the correct folder
 df = pd.read_csv('csv/hourly_aqi_data.csv')
 
+numeric_cols = ['aqi', 'temperature', 'humidity', 'pm1', 'pm10']
+for col in numeric_cols:
+    df[col] = pd.to_numeric(df[col], errors='coerce')
+
 # Detecting and Removing Outliers
 def remove_outliers_iqr(df, columns):
     cleaned_df = df.copy()
     for col in columns:
+        if not pd.api.types.is_numeric_dtype(cleaned_df[col]):
+            continue
+
         Q1 = cleaned_df[col].quantile(0.25)
         Q3 = cleaned_df[col].quantile(0.75)
         IQR = Q3 - Q1
         lower = Q1 - 1.5 * IQR
         upper = Q3 + 1.5 * IQR
-        cleaned_df = cleaned_df[(cleaned_df[col] >= lower) & (cleaned_df[col] <= upper)]
+        cleaned_df = cleaned_df[
+            (cleaned_df[col] >= lower) & (cleaned_df[col] <= upper)
+        ]
+
     return cleaned_df.reset_index(drop=True)
 
 
