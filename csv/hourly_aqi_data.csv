@@ -2790,3 +2790,4 @@ timestamp,city,dominentpol,temperature,humidity,pm1,pm10,pm25,aqi
 2026-08-26 00:18:53,"NED University, Karachi",pm25,28.1,59,64,35,94,94
 2026-08-26 01:11:54,"NED University, Karachi",pm25,28.1,58,68,36,99,99
 2026-08-26 02:11:55,"NED University, Karachi",pm25,28.5,59,64,35,94,94
+2026-08-26 03:11:57,"NED University, Karachi",pm25,28.1,58,49,28,86,86
